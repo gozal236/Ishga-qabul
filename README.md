@@ -89,7 +89,7 @@ Ishga-qabul/
 
 ## Laboratoriya ishlari (Loyihalarni boshqarish fani)
 
-Har bir hujjat laboratoriya mavzusini va texnik topshiriqning tegishli bosqichini birga qamrab oladi.
+Har bir hujjat laboratoriya mavzusini va texnik topshiriqning tegishli bosqichini birga qamrab oladi (har biri 31–33 bet: nazariy qism, bosqichma-bosqich amaliyot, kod ro‘yxatlari, jadvallar, skrinshotlar, xulosa, savollar, lug‘at va adabiyotlar).
 
 | № | Mavzu | Texnik topshiriq bosqichi | Hujjat |
 |---|---|---|---|
