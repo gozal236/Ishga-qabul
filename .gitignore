@@ -1,0 +1,9 @@
+# Build va vaqtinchalik fayllar
+.build/
+out/
+node_modules/
+
+# Vaqtinchalik fayllar
+~$*
+.DS_Store
+Thumbs.db

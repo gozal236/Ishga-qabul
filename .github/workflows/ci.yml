@@ -1,0 +1,51 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Kod va tuzilma tekshiruvi
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: JavaScript sintaksisi
+        run: |
+          node scripts/extract-js.js
+          node --check .build/app.js
+
+      - name: HTML tuzilmasi
+        run: |
+          grep -q "<!DOCTYPE html>" index.html
+          grep -q 'lang="uz"' index.html
+          grep -q 'name="viewport"' index.html
+          grep -q 'id="appShell"' index.html
+          echo "HTML tuzilmasi to'g'ri"
+
+      - name: Tashqi bog'liqliklar
+        run: |
+          if grep -qE '<script[^>]+src="https?:' index.html; then
+            echo "Xato: tashqi skript topildi"; exit 1
+          fi
+          if grep -qE '<link[^>]+href="https?:' index.html; then
+            echo "Xato: tashqi uslub topildi"; exit 1
+          fi
+          echo "Ilova to'liq mustaqil"
+
+      - name: Hujjatlar mavjudligi
+        run: |
+          count=$(ls -1 hujjatlar/*.docx 2>/dev/null | wc -l)
+          test "$count" -eq 7 || { echo "7 ta Word hujjati kutilgan, topildi: $count"; exit 1; }
+          echo "7 ta laboratoriya hujjati joyida"
+
